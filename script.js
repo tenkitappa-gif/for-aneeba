@@ -265,7 +265,7 @@ function playSong(card, src, startSec) {
     currentPlayingCard = card;
 }
 
-// loading screen - minimum 4 second dikhta hai
+// loading screen - minimum 6 second dikhta hai
 function hideLoader() {
     const loader = document.getElementById('loader');
     if (!loader) return;
@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // tab hide hota hai jab page bhi load ho jaye aur 4 sec min guzre hon
     loaderPageReady = document.readyState === 'complete';
     window.addEventListener('load', () => { loaderPageReady = true; maybeHideLoader(); });
-    setTimeout(() => { loaderMinTimeUp = true; maybeHideLoader(); }, 4000);
+    setTimeout(() => { loaderMinTimeUp = true; maybeHideLoader(); }, 6000);
 
     // Animate home in on first paint
     const home = document.getElementById('screen-home');
