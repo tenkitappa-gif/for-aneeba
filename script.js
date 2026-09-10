@@ -265,7 +265,7 @@ function playSong(card, src, startSec) {
     currentPlayingCard = card;
 }
 
-// start - page load hone pe yahan se kaam shuru hota hai
+// loading screen - minimum 4 second dikhta hai
 function hideLoader() {
     const loader = document.getElementById('loader');
     if (!loader) return;
@@ -273,16 +273,21 @@ function hideLoader() {
     setTimeout(() => loader.remove(), 750);
 }
 
+let loaderPageReady = false;
+let loaderMinTimeUp = false;
+
+function maybeHideLoader() {
+    if (loaderPageReady && loaderMinTimeUp) hideLoader();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     createParticles();
     populateNotesList();
 
-    // Loader hide on full load (with safety fallback)
-    if (document.readyState === 'complete') hideLoader();
-    else {
-        window.addEventListener('load', hideLoader);
-        setTimeout(hideLoader, 2500);
-    }
+    // tab hide hota hai jab page bhi load ho jaye aur 4 sec min guzre hon
+    loaderPageReady = document.readyState === 'complete';
+    window.addEventListener('load', () => { loaderPageReady = true; maybeHideLoader(); });
+    setTimeout(() => { loaderMinTimeUp = true; maybeHideLoader(); }, 4000);
 
     // Animate home in on first paint
     const home = document.getElementById('screen-home');
