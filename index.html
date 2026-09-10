@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Aneeba ❤️</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- loading splash -->
+    <div class="loader" id="loader">
+        <div class="loader-heart">❤️</div>
+        <div class="loader-text">For Aneeba</div>
+        <div class="loader-bar"><span></span></div>
+    </div>
+
+    <!-- floating hearts background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- sidebar (desktop me dikhta hai) -->
+    <nav class="sidebar" id="sidebar">
+        <div class="nav-logo" onclick="goTo('home')">
+            <span class="logo-heart">❤️</span>
+        </div>
+        <div class="nav-items">
+            <button class="nav-btn active" data-page="home" onclick="goTo('home')">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Home</span>
+            </button>
+            <button class="nav-btn" data-page="notes" onclick="goTo('notes')">
+                <span class="nav-icon">💌</span>
+                <span class="nav-label">Notes</span>
+            </button>
+            <button class="nav-btn" data-page="songs" onclick="goTo('songs')">
+                <span class="nav-icon">🎵</span>
+                <span class="nav-label">Songs</span>
+            </button>
+            <button class="nav-btn" data-page="gallery" onclick="goTo('gallery')">
+                <span class="nav-icon">📸</span>
+                <span class="nav-label">Gallery</span>
+            </button>
+            <button class="nav-btn" data-page="final" onclick="goTo('final')">
+                <span class="nav-icon">💖</span>
+                <span class="nav-label">Forever</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- mobile nav -->
+    <nav class="mobile-nav" id="mobileNav">
+        <button class="mob-btn active" data-page="home" onclick="goTo('home')">🏠</button>
+        <button class="mob-btn" data-page="notes" onclick="goTo('notes')">💌</button>
+        <button class="mob-btn" data-page="songs" onclick="goTo('songs')">🎵</button>
+        <button class="mob-btn" data-page="gallery" onclick="goTo('gallery')">📸</button>
+        <button class="mob-btn" data-page="final" onclick="goTo('final')">💖</button>
+    </nav>
+
+    <!-- page: home - constellation wala scene -->
+    <div class="screen active" id="screen-home">
+        <div class="home-wrapper">
+            <h1 class="home-title">
+                <span class="title-line1">This is for you,</span>
+                <span class="title-line2">Aneeba</span>
+            </h1>
+            <p class="home-subtitle">Tap on any star or heart to read a message ❤️</p>
+
+            <div class="constellation">
+                <div class="c-item" style="top:10%;left:15%" onclick="openNote(0)">
+                    <div class="c-shape">⭐</div>
+                    <div class="c-glow"></div>
+                </div>
+                <div class="c-item" style="top:25%;left:75%" onclick="openNote(1)">
+                    <div class="c-shape">❤️</div>
+                    <div class="c-glow"></div>
+                </div>
+                <div class="c-item" style="top:45%;left:55%" onclick="openNote(2)">
+                    <div class="c-shape">💖</div>
+                    <div class="c-glow"></div>
+                </div>
+                <div class="c-item" style="top:15%;left:45%" onclick="openNote(3)">
+                    <div class="c-shape">💕</div>
+                    <div class="c-glow"></div>
+                </div>
+                <div class="c-item" style="top:80%;left:40%" onclick="openNote(4)">
+                    <div class="c-shape">💫</div>
+                    <div class="c-glow"></div>
+                </div>
+                <div class="c-item" style="top:35%;left:25%" onclick="openNote(5)">
+                    <div class="c-shape">💗</div>
+                    <div class="c-glow"></div>
+                </div>
+                <div class="c-item" style="top:55%;left:85%" onclick="openNote(6)">
+                    <div class="c-shape">🌙</div>
+                    <div class="c-glow"></div>
+                </div>
+                <div class="c-item" style="top:90%;left:20%" onclick="openNote(7)">
+                    <div class="c-shape">💘</div>
+                    <div class="c-glow"></div>
+                </div>
+
+                <svg class="constellation-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <line x1="15" y1="10" x2="45" y2="15" />
+                    <line x1="45" y1="15" x2="25" y2="35" />
+                    <line x1="25" y1="35" x2="55" y2="45" />
+                    <line x1="55" y1="45" x2="75" y2="25" />
+                    <line x1="75" y1="25" x2="85" y2="55" />
+                    <line x1="85" y1="55" x2="40" y2="80" />
+                    <line x1="40" y1="80" x2="10" y2="60" />
+                    <line x1="10" y1="60" x2="15" y2="10" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- note popup overlay -->
+    <div class="note-popup" id="notePopup">
+        <div class="note-popup-inner">
+            <button class="close-note" onclick="closeNote()">✕</button>
+            <div class="note-popup-content" id="notePopupContent"></div>
+            <div class="note-nav">
+                <button class="note-nav-btn" id="prevNote" onclick="prevNoteFn()">← Prev</button>
+                <span class="note-counter" id="noteCounter">1 / 8</span>
+                <button class="note-nav-btn" id="nextNote" onclick="nextNoteFn()">Next →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- page: notes list -->
+    <div class="screen" id="screen-notes">
+        <div class="page-content">
+            <h1 class="page-heading">💌 All My Notes For You</h1>
+            <p class="page-desc">Tap any note to open it</p>
+            <div class="notes-list" id="notesList"></div>
+        </div>
+    </div>
+
+    <!-- page: songs - har gana apne best part se start hota hai -->
+    <div class="screen" id="screen-songs">
+        <div class="page-content">
+            <h1 class="page-heading">🎵 Songs For You</h1>
+            <p class="page-desc">Tap a song to play it right here</p>
+
+            <div class="songs-grid-3x3">
+                <!-- Row 1 -->
+                <div class="song-card" onclick="playSong(this, 'songs/you-pryme.mp3', 19)">
+                    <div class="song-card-icon" style="background:linear-gradient(135deg,#e74c3c,#c0392b)">🎵</div>
+                    <div class="song-card-info">
+                        <span class="song-card-title">you.</span>
+                        <span class="song-card-artist">pryme!</span>
+                    </div>
+                    <div class="song-card-play">▶</div>
+                    <div class="song-card-player"></div>
+                </div>
+
+                <div class="song-card" onclick="playSong(this, 'songs/stranger-pryme.mp3', 9)">
+                    <div class="song-card-icon" style="background:linear-gradient(135deg,#8e44ad,#6c3483)">🎵</div>
+                    <div class="song-card-info">
+                        <span class="song-card-title">stranger</span>
+                        <span class="song-card-artist">pryme!</span>
+                    </div>
+                    <div class="song-card-play">▶</div>
+                    <div class="song-card-player"></div>
+                </div>
+
+                <div class="song-card" onclick="playSong(this, 'songs/something-about-you-eyedress.mp3', 50)">
+                    <div class="song-card-icon" style="background:linear-gradient(135deg,#9b59b6,#7d3c98)">🎵</div>
+                    <div class="song-card-info">
+                        <span class="song-card-title">something about you</span>
+                        <span class="song-card-artist">eyedress, dent may</span>
+                    </div>
+                    <div class="song-card-play">▶</div>
+                    <div class="song-card-player"></div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="song-card" onclick="playSong(this, 'songs/her-jvke.mp3', 30)">
+                    <div class="song-card-icon" style="background:linear-gradient(135deg,#f39c12,#e67e22)">🎵</div>
+                    <div class="song-card-info">
+                        <span class="song-card-title">her</span>
+                        <span class="song-card-artist">jvke</span>
+                    </div>
+                    <div class="song-card-play">▶</div>
+                    <div class="song-card-player"></div>
+                </div>
+
+                <div class="song-card" onclick="playSong(this, 'songs/just-us-coraliwave.mp3', 139)">
+                    <div class="song-card-icon" style="background:linear-gradient(135deg,#3498db,#2980b9)">🎵</div>
+                    <div class="song-card-info">
+                        <span class="song-card-title">just us</span>
+                        <span class="song-card-artist">coraliwave</span>
+                    </div>
+                    <div class="song-card-play">▶</div>
+                    <div class="song-card-player"></div>
+                </div>
+
+                <div class="song-card" onclick="playSong(this, 'songs/reflections-the-neighbourhood.mp3', 42)">
+                    <div class="song-card-icon" style="background:linear-gradient(135deg,#1abc9c,#16a085)">🎵</div>
+                    <div class="song-card-info">
+                        <span class="song-card-title">reflections</span>
+                        <span class="song-card-artist">the neighbourhood</span>
+                    </div>
+                    <div class="song-card-play">▶</div>
+                    <div class="song-card-player"></div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="song-card" onclick="playSong(this, 'songs/time-lapse-junny.mp3', 40)">
+                    <div class="song-card-icon" style="background:linear-gradient(135deg,#e67e22,#d35400)">🎵</div>
+                    <div class="song-card-info">
+                        <span class="song-card-title">time lapse</span>
+                        <span class="song-card-artist">junny</span>
+                    </div>
+                    <div class="song-card-play">▶</div>
+                    <div class="song-card-player"></div>
+                </div>
+
+                <div class="song-card" onclick="playSong(this, 'songs/senorita-shawn-camila.mp3', 71)">
+                    <div class="song-card-icon" style="background:linear-gradient(135deg,#e74c3c,#c0392b)">🎵</div>
+                    <div class="song-card-info">
+                        <span class="song-card-title">senorita</span>
+                        <span class="song-card-artist">shawn mendes & camila cabello</span>
+                    </div>
+                    <div class="song-card-play">▶</div>
+                    <div class="song-card-player"></div>
+                </div>
+
+                <div class="song-card" onclick="playSong(this, 'songs/favour-avenoir.mp3', 40)">
+                    <div class="song-card-icon" style="background:linear-gradient(135deg,#e91e63,#c2185b)">🎵</div>
+                    <div class="song-card-info">
+                        <span class="song-card-title">favour</span>
+                        <span class="song-card-artist">avenoir</span>
+                    </div>
+                    <div class="song-card-play">▶</div>
+                    <div class="song-card-player"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- page: gallery -->
+    <div class="screen" id="screen-gallery">
+        <div class="page-content">
+            <h1 class="page-heading">Gallery</h1>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <div class="gallery-slot" id="slot1">
+                    <div class="slot-placeholder"><span>➕</span><p>Add Photo</p></div>
+                    <img src="images/pic1.jpg" alt="Romantic sunset moment 1">
+                    <input type="file" accept="image/*" class="photo-input" onchange="loadPhoto(this, 'slot1')">
+                </div>
+                <div class="gallery-slot" id="slot2">
+                    <div class="slot-placeholder"><span>➕</span><p>Add Photo</p></div>
+                    <img src="images/pic2.jpg" alt="Romantic sunset moment 2">
+                    <input type="file" accept="image/*" class="photo-input" onchange="loadPhoto(this, 'slot2')">
+                </div>
+                <div class="gallery-slot" id="slot3">
+                    <div class="slot-placeholder"><span>➕</span><p>Add Photo</p></div>
+                    <img src="images/pic3.jpg" alt="Romantic sunset moment 3">
+                    <input type="file" accept="image/*" class="photo-input" onchange="loadPhoto(this, 'slot3')">
+                </div>
+                <div class="gallery-slot" id="slot4">
+                    <div class="slot-placeholder"><span>➕</span><p>Add Photo</p></div>
+                    <img src="images/pic4.jpg" alt="Romantic sunset moment 4">
+                    <input type="file" accept="image/*" class="photo-input" onchange="loadPhoto(this, 'slot4')">
+                </div>
+                <div class="gallery-slot" id="slot5">
+                    <div class="slot-placeholder"><span>➕</span><p>Add Photo</p></div>
+                    <img src="images/pic5.jpg" alt="Romantic sunset moment 5">
+                    <input type="file" accept="image/*" class="photo-input" onchange="loadPhoto(this, 'slot5')">
+                </div>
+                <div class="gallery-slot" id="slot6">
+                    <div class="slot-placeholder"><span>➕</span><p>Add Photo</p></div>
+                    <img src="images/pic6.jpg" alt="Romantic sunset moment 6">
+                    <input type="file" accept="image/*" class="photo-input" onchange="loadPhoto(this, 'slot6')">
+                </div>
+            </div>
+
+            <div class="gallery-caption">
+                <textarea placeholder="Write a caption for this gallery..." id="galleryCaption"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- page: forever - last wala -->
+    <div class="screen" id="screen-final">
+        <div class="final-wrapper">
+            <div class="final-hearts-row">
+                <span style="animation-delay:0s">❤️</span>
+                <span style="animation-delay:0.2s">💖</span>
+                <span style="animation-delay:0.4s">💕</span>
+                <span style="animation-delay:0.6s">💗</span>
+                <span style="animation-delay:0.8s">💓</span>
+            </div>
+            <h1 class="final-big-title">For Aneeba</h1>
+            <div class="final-letter">
+                <p>This was just a small way of showing you how much you mean to me.</p>
+                <br>
+                <p>You are irreplaceable. You are unforgettable.</p>
+                <p>And you will always be <strong>my person</strong>.</p>
+                <br>
+                <p>Before you, I never knew what it felt like to have someone who just <em>gets</em> me.</p>
+                <p>There was nobody like you before, and there will never be anyone like you after.</p>
+                <br>
+                <p>I'm not going anywhere — through every good day, every bad day,</p>
+                <p>every laugh, every silence. I'm here. I'm staying. Forever.</p>
+                <br>
+                <p>You are loved. You are valued. And you are <strong>mine</strong>. Always. ❤️</p>
+            </div>
+            <div class="final-from">
+                <span class="final-sig">— Haris</span>
+            </div>
+            <div class="final-big-hearts">
+                <span>❤️</span><span>💖</span><span>💕</span><span>💗</span><span>💓</span>
+                <span>💘</span><span>💝</span><span>❤️</span><span>💖</span><span>💕</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
